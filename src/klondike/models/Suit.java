@@ -1,5 +1,8 @@
 package klondike.models;
 
-public class Suit {
-
+public enum Suit {
+	BRILLO,
+	TREBOL,
+	PICAS,
+	CORAZON
 }
