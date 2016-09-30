@@ -10,5 +10,14 @@ public class SuitStack {
 	public SuitStack() {
 		suitStack =new ArrayList<Card> ();
 	}
+	
+	
+	public String toString(){
+		String a = "";
+		for(int i=0 ; i<this.suitStack.size(); i++){
+			a = a + this.suitStack.get(i).toString();
+		}
+		return a;
+	}
 
 }

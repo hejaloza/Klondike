@@ -12,8 +12,13 @@ public class Straight {
 	
 	public void addCards(int max, Deck deck){
 		for(int i = 0; i<max; i++){
-			this.straight.add(deck.getDeck().get(0));
-			deck.getDeck().remove(0);
+			Card carta = deck.getDeck().get(0);
+
+			if(i==max-1){
+				carta.setHidden(false);
+			}
+			this.straight.add(carta);
+			deck.getDeck().remove(carta);
 		}
 		
 		
