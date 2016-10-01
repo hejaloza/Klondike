@@ -1,63 +1,82 @@
 package klondike.models;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import klondike.views.GameView;
 
 public class Game {
 
-	private Deck deck;
-	private ArrayList<Straight> straights;
-	private ArrayList<SuitStack> suitStacks;
-	private Discard discard;
+	private StackDeck deck;
+	private ArrayList<StackStraight> straights;
+	private ArrayList<StackSuit> suitStacks;
+	private StackDiscard discard;
+	boolean ok;
+	private GameView gameView;
 
 	public Game() {
-
-		deck = new Deck();
+		deck = new StackDeck();
 		deck.shuffle();
-		straights = new ArrayList<Straight>();
-		suitStacks = new ArrayList<SuitStack>();
+		straights = new ArrayList<StackStraight>();
+		suitStacks = new ArrayList<StackSuit>();
+		discard = new StackDiscard();
+		gameView = new GameView(deck, straights, suitStacks, discard);
 
-		/* Baraja **********/
-		System.out.println("Baraja: [X,X]");
-		////////
-
-		discard = new Discard();
-		
-		System.out.println("Descarte:" +discard.toString());
-		
-		/////////
-		
 		for (int i = 0; i < Suit.values().length; i++) {
-
-			SuitStack suit = new SuitStack();
+			StackSuit suit = new StackSuit();
 			suitStacks.add(suit);
-
-			System.out.println("Palo " + Suit.values()[i] + ": " + suit.toString());
-
 		}
 
-		
-			
-		
-		
-		
-		//////////////
 		for (int i = 1; i <= 7; i++) {
-			Straight s = new Straight();
+			StackStraight s = new StackStraight();
 			s.addCards(i, deck);
-			System.out.println("Escalera" + i + ": " + s.toString());
 			straights.add(s);
-
 		}
-		System.out.println("/////");
 
-		/////////
+		gameView.imprimirBoard();
+
+		BufferedReader br;
+		br = new BufferedReader(new InputStreamReader(System.in));
+
+		do {
+			ok = false;
+			try {
+				System.out.println("Opcion? [1-9]:");
+				int opcion = Integer.parseInt(br.readLine());
+
+				if (opcion == 1) {
+					Card a = deck.getStackCard().pop();
+					a.setHidden(false);
+					discard.getStackCard().push(a);
+					gameView.imprimirBoard();
+
+				} else if (opcion == 2) {
+
+					if (deck.getStackCard().isEmpty()) {
+
+						while (discard.getStackCard().size() != 0) {
+
+							deck.getStackCard().push(discard.getStackCard().pop());
+
+						}
+						
+					}
+					gameView.imprimirBoard();
+
+				}
+
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+
+		} while (!ok);
 
 	}
 
 	public static void main(String[] args) {
-
 		new Game();
-
 	}
 
 }

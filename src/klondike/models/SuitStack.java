@@ -12,6 +12,17 @@ public class SuitStack {
 	}
 	
 	
+	
+	public void addCards(Card card){
+					
+			this.suitStack.add(card);
+		
+	}
+	
+
+	
+	
+	
 	public String toString(){
 		String a = "";
 		for(int i=0 ; i<this.suitStack.size(); i++){
