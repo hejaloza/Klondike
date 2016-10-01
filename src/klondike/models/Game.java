@@ -96,7 +96,72 @@ public class Game {
 
 				gameView.imprimirBoard();
 
-			}
+			} else if (opcion == 5) {
+
+						
+					System.out.println("De que Escalera? [1-7]:");
+					int opcion_escalera2 = Integer.parseInt(br.readLine());
+					
+					
+					StackStraight escalera= straights.get(opcion_escalera2-1);
+					Card carta = escalera.getStackCard().pop();
+					
+
+					Suit palo= carta.getSuit();
+					
+					StackSuit a = suitStacks.get(palo);
+					a.getStackCard().push(carta);
+					
+
+				gameView.imprimirBoard();
+
+			}else if (opcion == 6) {
+
+				
+				System.out.println("De que Escalera? [1-7]:");
+				int de_escalera = Integer.parseInt(br.readLine());
+				
+				System.out.println("Cuantas Cartas?:");
+				int cuantas_cartas = Integer.parseInt(br.readLine());
+				
+				System.out.println("A que Escalera? [1-7]:");
+				int a_escalera = Integer.parseInt(br.readLine());
+				
+				StackCard a = new StackCard();
+				
+				for(int i=0; i<cuantas_cartas; i++){
+					a.getStackCard().push(straights.get(de_escalera-1).getStackCard().pop());
+					//straights.get(a_escalera).getStackCard().push(straights.get(de_escalera).getStackCard().pop());
+				}
+				
+				while(a.getStackCard().size()!=0){
+					//straights.get(a_escalera).getStackCard().push(straights.get(de_escalera).getStackCard().pop());
+					straights.get(a_escalera-1).getStackCard().push(a.getStackCard().pop());
+				}
+				
+								
+
+			gameView.imprimirBoard();
+
+		}else if (opcion == 7) {
+
+			
+			System.out.println("De que Palo? [1-4]:");
+			int de_palo = Integer.parseInt(br.readLine());
+			System.out.println("A que Escalera? [1-7]:");
+			int a_escalera = Integer.parseInt(br.readLine());
+			Suit s = Suit.values()[de_palo-1];
+			StackSuit palo= suitStacks.get(s);
+			
+			Card carta = palo.getStackCard().pop();
+
+			straights.get(a_escalera-1).getStackCard().push(carta);
+			
+			
+
+		gameView.imprimirBoard();
+
+	}
 				
 
 			} catch (IOException ioe) {
