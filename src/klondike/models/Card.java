@@ -16,6 +16,10 @@ public class Card{
 		this.hidden = hidden;
 	}
 	
+	public Suit getSuit(){
+		return suit;
+	}
+	
 	@Override
 	public String toString(){
 		if(this.hidden){

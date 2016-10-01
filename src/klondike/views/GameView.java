@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import klondike.models.Card;
 import klondike.models.StackDeck;
@@ -16,11 +17,11 @@ public class GameView {
 
 	private StackDeck deck;
 	private ArrayList<StackStraight> straights;
-	private ArrayList<StackSuit> suitStacks;
+	private Hashtable<Suit,StackSuit> suitStacks;
 	private StackDiscard discard;
 
 
-	public GameView(StackDeck deck, ArrayList<StackStraight> straights, ArrayList<StackSuit> suitStacks,
+	public GameView(StackDeck deck, ArrayList<StackStraight> straights, Hashtable<Suit,StackSuit> suitStacks,
 			StackDiscard discard) {
 
 		this.deck = deck;
@@ -40,7 +41,7 @@ public class GameView {
 		System.out.println("Descarte:" + discard.toString());
 
 		for (int i = 0; i < Suit.values().length; i++) {
-			System.out.println("Palo " + Suit.values()[i] + ": " + suitStacks.get(i).toString());
+			System.out.println("Palo " + Suit.values()[i] + ": " + suitStacks.get(Suit.values()[i]));
 		}
 
 		for (int i = 1; i <= 7; i++) {
