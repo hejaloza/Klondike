@@ -75,16 +75,29 @@ public class Game {
 						StackSuit a = suitStacks.get(palo);
 						a.getStackCard().push(carta);
 
-					//	deck.getStackCard().push(discard.getStackCard().pop());
-					///	suitStacks
-						
-						
 
 					}
 
 					gameView.imprimirBoard();
 
+							
+			} else if (opcion == 4) {
+
+				if (discard.getStackCard().size() > 0) {
+					
+					System.out.println("A que Escalera? [1-7]:");
+					int opcion_escalera = Integer.parseInt(br.readLine());
+					Card carta = discard.getStackCard().pop();
+					
+					StackStraight escalera= straights.get(opcion_escalera-1);
+					escalera.getStackCard().push(carta);
+
 				}
+
+				gameView.imprimirBoard();
+
+			}
+				
 
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
