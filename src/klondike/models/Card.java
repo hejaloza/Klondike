@@ -20,6 +20,10 @@ public class Card{
 		return suit;
 	}
 	
+	public Number getNumber(){
+		return number;
+	}
+	
 	@Override
 	public String toString(){
 		if(this.hidden){
