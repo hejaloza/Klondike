@@ -48,14 +48,20 @@ public class Game {
 				int opcion = Integer.parseInt(br.readLine());
 
 				if (opcion == 1) {
-					Card a = deck.getStackCard().pop();
-					a.setHidden(false);
-					discard.getStackCard().push(a);
-					gameView.imprimirBoard();
+					if (deck.getStackCard().isEmpty()) {
+						System.out.println("La baraja está vacía");
+					} else {
+						Card a = deck.getStackCard().pop();
+						a.setHidden(false);
+						discard.getStackCard().push(a);
+						gameView.imprimirBoard();
+					}
 
 				} else if (opcion == 2) {
 
-					if (deck.getStackCard().isEmpty()) {
+					if (discard.getStackCard().isEmpty()) {
+						System.out.println("El descarte está vacío");
+					} else {
 
 						while (discard.getStackCard().size() != 0) {
 
@@ -157,7 +163,12 @@ public class Game {
 					Suit palo = carta.getSuit();
 
 					StackSuit a = suitStacks.get(palo);
-					a.getStackCard().push(carta);
+					if (a.getStackCard().lastElement().getNumber().getCardValue() == carta.getNumber().getCardValue()
+							- 1) {
+						a.getStackCard().push(carta);
+					} else {
+						System.out.println("La carta no corresponde");
+					}
 
 					gameView.imprimirBoard();
 
@@ -172,19 +183,27 @@ public class Game {
 					System.out.println("A que Escalera? [1-7]:");
 					int a_escalera = Integer.parseInt(br.readLine());
 
-					StackCard a = new StackCard();
+					if (straights.get(de_escalera - 1).getStackCard()
+							.get(straights.get(de_escalera - 1).getStackCard().size() - cuantas_cartas).getNumber()
+							.getCardValue() == straights.get(a_escalera).getStackCard()
+									.get(straights.get(a_escalera).getStackCard().size() - 1).getNumber().getCardValue()
+									- 1) {
+						StackCard a = new StackCard();
 
-					for (int i = 0; i < cuantas_cartas; i++) {
-						a.getStackCard().push(straights.get(de_escalera - 1).getStackCard().pop());
-						// straights.get(a_escalera).getStackCard().push(straights.get(de_escalera).getStackCard().pop());
+						for (int i = 0; i < cuantas_cartas; i++) {
+							a.getStackCard().push(straights.get(de_escalera - 1).getStackCard().pop());
+							// straights.get(a_escalera).getStackCard().push(straights.get(de_escalera).getStackCard().pop());
+						}
+
+						while (a.getStackCard().size() != 0) {
+							// straights.get(a_escalera).getStackCard().push(straights.get(de_escalera).getStackCard().pop());
+							straights.get(a_escalera - 1).getStackCard().push(a.getStackCard().pop());
+						}
+
+						gameView.imprimirBoard();
+					} else {
+						System.out.println("Selección no válida");
 					}
-
-					while (a.getStackCard().size() != 0) {
-						// straights.get(a_escalera).getStackCard().push(straights.get(de_escalera).getStackCard().pop());
-						straights.get(a_escalera - 1).getStackCard().push(a.getStackCard().pop());
-					}
-
-					gameView.imprimirBoard();
 
 				} else if (opcion == 7) {
 
