@@ -1,12 +1,8 @@
 package klondike.views;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import klondike.models.Card;
 import klondike.models.StackDeck;
 import klondike.models.StackDiscard;
 import klondike.models.StackStraight;
@@ -52,9 +48,7 @@ public class GameView {
 	}
 
 	public void imprimirBoard() {
-
 		board();
-
 		System.out.println("1. Mover de baraja a descarte");
 		System.out.println("2. Mover de descarte a baraja");
 		System.out.println("3. Mover de descarte a palo");
@@ -64,8 +58,6 @@ public class GameView {
 		System.out.println("7. Mover de palo a escalera");
 		System.out.println("8. Voltear en escalera");
 		System.out.println("9. Salir");
-
-
 
 	}
 

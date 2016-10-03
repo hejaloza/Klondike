@@ -1,22 +1,10 @@
-package util;
+package klondike.utils;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class IO {
 
-	private static IO io;
-	
-	public static IO instance() {
-		if (io == null){
-			io = new IO();
-		}
-		return io;
-	}
-	
-	private IO(){
-		
-	}
-	
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
 			System.in));
 
