@@ -5,23 +5,23 @@ import java.util.Hashtable;
 
 import klondike.models.StackDeck;
 import klondike.models.StackDiscard;
-import klondike.models.StackStraight;
+import klondike.models.StackLadder;
 import klondike.models.StackSuit;
 import klondike.models.Suit;
 
 public class GameView {
 
 	private StackDeck deck;
-	private ArrayList<StackStraight> straights;
+	private ArrayList<StackLadder> ladders;
 	private Hashtable<Suit,StackSuit> suitStacks;
 	private StackDiscard discard;
 
 
-	public GameView(StackDeck deck, ArrayList<StackStraight> straights, Hashtable<Suit,StackSuit> suitStacks,
+	public GameView(StackDeck deck, ArrayList<StackLadder> ladders, Hashtable<Suit,StackSuit> suitStacks,
 			StackDiscard discard) {
 
 		this.deck = deck;
-		this.straights = straights;
+		this.ladders = ladders;
 		this.suitStacks = suitStacks;
 		this.discard = discard;
 	}
@@ -41,7 +41,7 @@ public class GameView {
 		}
 
 		for (int i = 1; i <= 7; i++) {
-			System.out.println("Escalera" + i + ": " + straights.get(i - 1).toString());
+			System.out.println("Escalera" + i + ": " + ladders.get(i - 1).toString());
 		}
 
 		System.out.println("-----------------------------");

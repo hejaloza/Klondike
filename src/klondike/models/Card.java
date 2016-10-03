@@ -1,32 +1,32 @@
 package klondike.models;
 
-public class Card{
+public class Card {
 
 	private Suit suit;
 	private Number number;
 	private boolean hidden;
-	
-	public Card (Number number, Suit suit, boolean hidden){
+
+	public Card(Number number, Suit suit, boolean hidden) {
 		this.number = number;
 		this.suit = suit;
 		this.hidden = hidden;
 	}
-	
-	public void setHidden(boolean hidden){
+
+	public void setHidden(boolean hidden) {
 		this.hidden = hidden;
 	}
-	
-	public Suit getSuit(){
+
+	public Suit getSuit() {
 		return suit;
 	}
-	
-	public Number getNumber(){
+
+	public Number getNumber() {
 		return number;
 	}
-	
+
 	@Override
-	public String toString(){
-		if(this.hidden){
+	public String toString() {
+		if (this.hidden) {
 			return "[]";
 		}
 		return "[" + this.number + " " + this.suit + "]";

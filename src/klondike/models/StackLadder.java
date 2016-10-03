@@ -1,8 +1,8 @@
 package klondike.models;
 
-public class StackStraight extends StackCard {
+public class StackLadder extends StackCard {
 		
-	public StackStraight() {
+	public StackLadder() {
 		super();
 	}
 	
